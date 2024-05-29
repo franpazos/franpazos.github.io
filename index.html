@@ -2,67 +2,89 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-
-    <!--GOOGLE FONTS-->
-    <!--TITLE FONT-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
-    <!--REST OF THE GAME FONT-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap" rel="stylesheet">
-
-    <title>Ironhack Invaders</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tic Tac Toe</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="stylesheet" href="styles/overlays.css">
+	<link rel="stylesheet" href="styles/configuration.css">
+	<link rel="stylesheet" href="styles/game.css">
+	<script src="scripts/config.js" defer></script>
+	<script src="scripts/game.js" defer></script>
+	<script src="scripts/app.js" defer></script>
 </head>
 
 <body>
+	<div id="backdrop"></div>
+	<header id="main-header">
+		<h1>Play Tic, Tac, Toe</h1>
+		<p>Built with HTML, CSS, JavaScript and -of course- lots of love!</p>
+	</header>
+	<main>
+		<aside class="modal" id="config-overlay">
+			<h2>Choose your name</h2>
 
-    <audio id="background-music" autoplay loop src="./audio/theme-song.mp3"></audio>
-    <audio id="alright" src="./audio/voices/alright.mp3"></audio>
-    <audio id="nice" src="./audio/voices/nice.mp3"></audio>
-    <audio id="super-nice" src="./audio/voices/supernice.mp3"></audio>
-    <audio id="grrr" src="./audio/voices/grrr.mp3"></audio>
+			<form>
+				<div class="form-control">
+					<label for="playername">Player Name</label>
+					<input type="text" id="name" name="playername" id="playername" required>
+				</div>
+				<p id="config-errors"></p>
+				<div>
+					<button type="reset" class="btn btn-alt" id="cancel-config-btn">Cancel</button>
+					<button type="submit" class="btn" id="confirm-config-btn">Confirm</button>
+				</div>
+			</form>
+		</aside>
 
-    <main>
-        <h1>Ironhack Invaders</h1>
+		<section id="game-configuration">
+			<ol>
+				<li>
+					<article id="player-1-data">
+						<h2>Player 1</h2>
+						<h3>PLAYER NAME</h3>
+						<p class="player-symbol">X</p>
+						<button class="btn btn-alt" id="edit-player1-btn" data-playerid="1">Edit</button>
+					</article>
+				</li>
+				<li>
+					<article id="player-2-data">
+						<h2>Player 2</h2>
+						<h3>PLAYER NAME</h3>
+						<p class="player-symbol">O</p>
+						<button class="btn btn-alt" id="edit-player2-btn" data-playerid="2">Edit</button>
+					</article>
+				</li>
+			</ol>
+			<button class="btn" id="start-game-btn">Start New Game</button>
+		</section>
 
-        <div id="game-intro" class="positioning positioning-game-screens">
-            <!--ACA VA LA PAGINA INICIAL-->
-            <button id="start-button" class="shadow__btn">Start Game</button>
-            <div id="instructions">
-                <p>Use your mouse to move across the screen and click to shoot!</p>
-            </div>
-        </div>
+		<section id="active-game">
+			<article id="game-over">
+				<h2>You won, <span id="winner-name">PLAYER NAME</span>!</h2>
+				<p>Click "Start New Game" above to start a new game!</p>
+			</article>
 
-        <div id="game-screen" class="positioning">
+			<p>It´s your turn <span id="active-player-name">PLAYER NAME</span>!</p>
+			<ol id="game-board">
+				<li data-col="1" data-row="1"></li>
+				<li data-col="2" data-row="1"></li>
+				<li data-col="3" data-row="1"></li>
 
-            <div id="game-scores">
-                <h3>Score: <span id="score"></span></h3>
-                <h3>Lives: <span id="lives"></span></h3>
-                <h3>Time: <span id="time"></span></h3>
-            </div>
+				<li data-col="1" data-row="2"></li>
+				<li data-col="2" data-row="2"></li>
+				<li data-col="3" data-row="2"></li>
 
-        </div>
-
-        <div id="game-end" class="positioning positioning-game-screens">
-            <h2 id="game-end-title"></h2>
-            <h3 id="total-scores"></h3>
-            <button id="restart-button" class="shadow__btn">Restart</button>
-            <!--ACA VA LA PAGINA FINAL-->
-        </div>
-    </main>
-
-    <script src="./js/bomb.js"></script>
-    <script src="./js/data.js"></script>
-    <script src="./js/bullet.js"></script>
-    <script src="./js/invader.js"></script>
-    <script src="./js/player.js"></script>
-    <script src="./js/game.js"></script>
-    <script src="./js/script.js"></script>
+				<li data-col="1" data-row="3"></li>
+				<li data-col="2" data-row="3"></li>
+				<li data-col="3" data-row="3"></li>
+			</ol>
+		</section>
+	</main>
 </body>
 
 </html>
